@@ -1,21 +1,64 @@
-import { OPEN_MODAL, CLOSE_MODAL  } from '../actions/addModalAction';
+import { 
+  OPEN_MODAL, 
+  CLOSE_MODAL, 
+  ITEM_NAME, 
+  TRANSPORT_NUMBER, 
+  DELIVERY_COMPANY_ID, 
+  addModalActionType
+ } from '../actions/addModalAction';
 
-const initalState: any = {
-  isOpen: false,
+interface state {
+  visibility: string,
+  opacity: number,
+  height: string,
+  itemNameState: string,
+  transportNumberState: any,
+  deliveryIdState: string,
+}
+
+const initalState: state = {
+  visibility: 'hidden',
+  height: '0px',
+  opacity: 0,
+  itemNameState: '',
+  transportNumberState: 0,
+  deliveryIdState: '',
 };
 
-export default function addModalReducer(state = initalState, action: any): any {
+export default function addModalReducer(state: state = initalState, action: addModalActionType): state {
   switch (action.type) {
     case OPEN_MODAL: {
       return {
         ...state,
-        isOpen: true,
+        visibility: 'visible',
+        height: '190px',
+        opacity: 1,
       };
     }
     case CLOSE_MODAL: {
       return {
         ...state,
-        isOpen: false
+        visibility: 'hidden',
+        height: '0px',
+        opacity: 0,
+      };
+    }
+    case ITEM_NAME: {
+      return {
+        ...state,
+        itemNameState: action.payload,
+      };
+    }
+    case TRANSPORT_NUMBER: {
+      return {
+        ...state,
+        transportNumberState: action.payload,
+      };
+    }
+    case DELIVERY_COMPANY_ID: {
+      return {
+        ...state,
+        deliveryIdState: action.payload
       };
     }
     default:
