@@ -1,11 +1,6 @@
 import styled from '@emotion/styled'
 
 export const Footer = styled.div`
-    margin: 0 auto;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, -110%);
     div{
         font-size: 10px;
         font-family: 'CookieRunRegular';
@@ -14,29 +9,18 @@ export const Footer = styled.div`
     a{
         color: red
     }
-    width: 100%;
-    max-width: 400px;
-    min-width: 300px;
-    @media screen and (max-width: 430px) { 
-        width: 350px;
-    }
-    @media screen and (max-width: 370px) { 
-        width: 320px;
-    }
-    @media screen and (max-width: 330px) { 
-        width: 300px;
-    }
 `
 
 export const Wrapper = styled.div`
     width: 80%;
     margin: 0 auto;
     display: flex;
-    justify-content: space-evenly;
+    align-items: center;
+    justify-content: space-around;
 `
 
 export const Description = styled.div`
-    width: 50px;
+    width: 51px;
     height: 60px;
     display: flex;
     flex-direction: column;
