@@ -4,7 +4,8 @@ import {
   ITEM_NAME, 
   TRANSPORT_NUMBER, 
   DELIVERY_COMPANY_ID, 
-  addModalActionType
+  addModalActionType,
+  RESET_MODAL
  } from '../actions/addModalAction';
 
 interface state {
@@ -41,6 +42,16 @@ export default function addModalReducer(state: state = initalState, action: addM
         visibility: 'hidden',
         height: '0px',
         opacity: 0,
+      };
+    }
+    case RESET_MODAL: {
+      return {
+        ...state,
+        visibility: 'hidden',
+        height: '0px',
+        opacity: 0,
+        itemNameState: '',
+        transportNumberState: '',
       };
     }
     case ITEM_NAME: {
