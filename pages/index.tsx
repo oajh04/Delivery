@@ -1,10 +1,10 @@
 import styled from '@emotion/styled'
 import type { NextPage } from 'next'
-import { AddCard, Footer, Main } from '../src/components'
+import { AddCard, AddModal, Footer, Main } from '../src/components'
 
 export const Wrapper = styled.div`
     width: 100%;
-    height: 100vh;
+    height: 100%;
     max-width: 500px;
     margin: 0 auto;
     display: flex;
@@ -15,6 +15,7 @@ export const Wrapper = styled.div`
 const Home: NextPage = () => {
   return (
     <>
+      <AddModal />
       <Wrapper>
         <Main/>
         <AddCard />
