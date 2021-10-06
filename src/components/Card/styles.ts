@@ -7,19 +7,6 @@ export const Wrapper = styled.div`
     border-radius: 8px;
     font-family: 'CookieRunRegular';
     margin: 0 auto;
-    width: 100%;
-    margin-bottom: 20px;
-    max-width: 400px;
-    min-width: 300px;
-    @media screen and (max-width: 430px) { 
-        width: 350px;
-    }
-    @media screen and (max-width: 370px) { 
-        width: 320px;
-    }
-    @media screen and (max-width: 330px) { 
-        width: 300px;
-    }
 `
 
 export const Title = styled.div`
