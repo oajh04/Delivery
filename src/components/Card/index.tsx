@@ -3,12 +3,11 @@ import React from 'react';
 import * as S from './styles'
 import { BsArrowRight } from 'react-icons/bs'
 import { AtPickup, Delivered, InTransit, OutForDelivery, ReadyDelivery } from '../../assets';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/reducers';
+import { ContainerWrapper } from '../Container';
 
 const Card = () => {
     return (
-    <>
+    <ContainerWrapper>
         <S.Wrapper>
             <S.Title>
                 <span>CWAY (Woori Express)</span>
@@ -53,7 +52,7 @@ const Card = () => {
                 </div>
             </S.Progresses>
         </S.Wrapper>
-    </>
+    </ContainerWrapper>
   );
 }
 
