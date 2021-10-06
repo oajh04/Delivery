@@ -1,31 +1,39 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
+import React, { FC } from 'react';
 import * as S from './styles'
 import { BsArrowRight } from 'react-icons/bs'
 import { AtPickup, Delivered, InTransit, OutForDelivery, ReadyDelivery } from '../../assets';
 import { ContainerWrapper } from '../Container';
+import { useDate } from '../../libs/hooks/useDate';
 
-const Card = () => {
+interface Props {
+    data: any,
+    name: string,
+    id: number
+}
+
+const Card: FC<Props> = ({data, name, id}) => {
+
     return (
     <ContainerWrapper>
         <S.Wrapper>
             <S.Title>
-                <span>CWAY (Woori Express)</span>
-                <div>상품준비중</div>
+                <span>{data.carrier.name}</span>
+                <div>{data.state.text}</div>
             </S.Title>
 
             <S.Info>
-                <div>642382102564</div>
-                <div>aisjdoiajdaoisd</div>
+                <div>{id}</div>
+                <div>{name}</div>
             </S.Info>
 
             <S.Date>
-                <div>Form 옥*
-                    <br />출발 : 2021.12.12
+                <div>Form {data.from.name}
+                    <br />출발 : {useDate(data.from.time)}
                 </div>
                 <BsArrowRight />
-                <div>Form 옥*
-                    <br />출발 : 2021.12.12
+                <div>To {data.to.name}
+                    <br />도착 : {useDate(data.to.time)}
                 </div>
             </S.Date>
 
