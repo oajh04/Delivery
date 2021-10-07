@@ -3,12 +3,19 @@ import { ContainerWrapper } from '../Container';
 import * as S from './styles'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import { FcCancel } from 'react-icons/fc'
+import { useDispatch } from 'react-redux';
+import { closeMotion } from '../../redux/actions/motionAction';
 
 const DelCard = () => {
+  const dispatch = useDispatch();
+
+  const onToggle = () => {
+    dispatch(closeMotion())
+  }
   return (
     <>
         <ContainerWrapper >
-            <S.Wrapper>
+            <S.Wrapper onClick={onToggle}>
                 <S.Button>
                   <AiOutlineCloseCircle />
                   <span>닫기</span>
