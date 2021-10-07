@@ -5,6 +5,7 @@ interface Props {
   height?: string,
   opacity?: number,
   visibility?: string,
+  type?: string,
 }
 
 export const ModalBaseWrapper = styled.div<Props>`
