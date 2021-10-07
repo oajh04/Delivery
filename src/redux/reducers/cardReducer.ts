@@ -13,9 +13,10 @@ export default function cardReducer(state = initalState, action: cardActionType)
       };
     }
     case DEL_CARD: {
+      console.log('asdw',state.deliveres.filter((data: any) => data.id !== action.payload))
       return {
         ...state,
-        // deliveres: state.deliveres.filter((track: any) => track.trackID !== trackID),
+        deliveres: state.deliveres.filter((data: any) => data.id !== action.payload),
       };
     }
     default:
