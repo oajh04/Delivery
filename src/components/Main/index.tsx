@@ -6,7 +6,7 @@ import Card from '../Card';
 import { motion } from "framer-motion";
 
 const Main = () => {
-  const [ toggle, setToggle ] =useState<boolean>(false)
+  const toggle = useSelector((state: RootState) => state.motionReducer.toggle)
 
   const data = useSelector((state: RootState)=> state.cardReducer.deliveres)
 
@@ -17,7 +17,6 @@ const Main = () => {
           return (
             <motion.div
               key={index}
-              onClick={() => setToggle(!toggle)}
               whileTap={{ scale: 0.95 }}
             >
               {
