@@ -19,9 +19,16 @@ export const ModalBaseWrapper = styled.div<Props>`
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  transition: all 0.6s;
   visibility: ${({ visibility }) => visibility};
   opacity: ${({ opacity }) => opacity};
+  ${props =>
+    props.type === 'add'
+    ? css`
+      transition: all 0.6s;
+    `
+    : css`
+      transition: all 0s;
+    `};
 `;
 
 export const ModalBackgroud = styled.div`
@@ -45,5 +52,12 @@ export const ModalContent = styled.div<Props>`
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; 
   height: ${({ height }) => height};
   opacity: ${({ opacity }) => opacity};
-  transition: all 0.8s;
+  ${props =>
+    props.type === 'add'
+    ? css`
+      transition: all 0.8s;
+    `
+    : css`
+      transition: all 0s;
+    `};
 `
