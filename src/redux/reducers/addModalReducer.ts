@@ -22,7 +22,7 @@ const initalState: state = {
   height: '0px',
   opacity: 0,
   itemNameState: '',
-  transportNumberState: null,
+  transportNumberState: '',
   deliveryIdState: '',
 };
 
@@ -51,7 +51,7 @@ export default function addModalReducer(state: state = initalState, action: addM
         height: '0px',
         opacity: 0,
         itemNameState: '',
-        transportNumberState: null,
+        transportNumberState: '',
       };
     }
     case ITEM_NAME: {
