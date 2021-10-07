@@ -1,4 +1,15 @@
+import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
+
+const clickEvent = keyframes`
+    0 {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: rotateY(180deg);
+    }
+`
 
 export const Wrapper = styled.div`
     height: 250px;
@@ -7,6 +18,7 @@ export const Wrapper = styled.div`
     border-radius: 8px;
     font-family: 'CookieRunRegular';
     margin: 0 auto;
+    transition: all 0.5s linear;
 `
 
 export const Title = styled.div`
@@ -41,6 +53,9 @@ export const Info = styled.div`
     div{
         font-size: 15px;
         font-family: 'CookieRunRegular';
+    }
+    .deliveryId{
+        cursor: pointer;
     }
 `
 
