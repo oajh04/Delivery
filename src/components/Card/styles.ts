@@ -1,16 +1,6 @@
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
-const clickEvent = keyframes`
-    0 {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        transform: rotateY(180deg);
-    }
-`
-
 export const Wrapper = styled.div`
     height: 250px;
     padding: 9px 11px;
@@ -70,27 +60,5 @@ export const Date = styled.div`
     div{
         font-size: 13px;
         font-family: 'CookieRunRegular';
-    }
-`
-
-export const Progresses = styled.div`
-    margin-top: 23px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    div{
-        height: 70px;
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-        justify-content: flex-end;
-        img{
-        }
-        span{
-            margin-top: 5px;
-            font-size: 13px;
-        }
     }
 `
