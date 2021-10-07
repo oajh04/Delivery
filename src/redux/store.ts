@@ -1,7 +1,6 @@
 import { createStore } from "redux";
 import { createWrapper, HYDRATE } from "next-redux-wrapper";
 import rootReducer from "./reducers";
-import { FC } from "react";
 
 const makeStore = () => {
     const { persistStore, persistReducer } = require("redux-persist");
@@ -19,7 +18,7 @@ const makeStore = () => {
       persistedReducer
     ); // Creating the store again
 
-    store.__persistor = persistStore(store); // This creates a persistor object & push that persisted object to .__persistor, so that we can avail the persistability feature
+    (store as any).__persistor = persistStore(store); // This creates a persistor object & push that persisted object to .__persistor, so that we can avail the persistability feature
 
     return store;
 };
