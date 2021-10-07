@@ -4,14 +4,6 @@ import { DelCard } from '..';
 import { RootState } from '../../redux/reducers';
 import Card from '../Card';
 import { motion } from "framer-motion";
-import * as S from './styles'
-import { keyframes } from '@emotion/react';
-import styled from '@emotion/styled';
-
-const clickEvent = {
-  opacity: 1,
-  transition: 'all 0.2s linear',
-}
 
 const Main = () => {
   const [ toggle, setToggle ] =useState<boolean>(false)
@@ -26,9 +18,6 @@ const Main = () => {
             <motion.div
               key={index}
               onClick={() => setToggle(!toggle)}
-              style={clickEvent}
-              animate={toggle ? "active" : "inActive"}
-              whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.95 }}
             >
               {
