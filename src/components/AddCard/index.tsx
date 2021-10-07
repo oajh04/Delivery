@@ -18,7 +18,6 @@ const AddCard = () => {
     <>
       <ContainerWrapper>
         <motion.div
-          whileHover={{ scale: 1.2 }}
           onClick={onOpenModal}
           whileTap={{ scale: 0.95 }}
         >
