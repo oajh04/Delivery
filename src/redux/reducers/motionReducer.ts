@@ -1,22 +1,29 @@
 import { CLOSE_MOTION, motionActionType, OPEN_MOTION } from "../actions/motionAction";
 
-
-const initState: any = {
-    toggle: false
+interface state {
+    toggle: boolean,
+    toggleId: string
 }
 
-export default function motionReducer(state: any = initState, action: motionActionType): any{
+const initState: state = {
+    toggle: false,
+    toggleId: '',
+}
+
+export default function motionReducer(state: state = initState, action: motionActionType): state{
     switch (action.type) {
         case OPEN_MOTION : {
             return {
                 ...state,
-                toggle: true
+                toggle: true,
+                toggleId: action.payload,
             };
         }
         case CLOSE_MOTION : {
             return {
                 ...state,
-                toggle: false
+                toggle: false,
+                toggleId: action.payload,
             };
         }
         default:
