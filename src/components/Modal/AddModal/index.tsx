@@ -4,6 +4,7 @@ import delivery from '../../../libs/api/delivery';
 import { Carriers } from '../../../libs/Data/Carriers';
 import { resetModal, deliveryId, itemName, transportNumber } from '../../../redux/actions/addModalAction';
 import { addCard } from '../../../redux/actions/cardAction';
+import { openError } from '../../../redux/actions/errorModalAction';
 import { RootState } from '../../../redux/reducers';
 import ModalBaseContainer from '../ModalBase';
 import * as S from './styles'
@@ -11,7 +12,7 @@ import * as S from './styles'
 const AddModal = () => {
   const dispatch = useDispatch()
 
-  const { itemNameState, transportNumberState, deliveryIdState } = useSelector((state: RootState) => state.addModalReducer)
+  const { itemNameState, transportNumberState, deliveryIdState, visibility, height, opacity } = useSelector((state: RootState) => state.addModalReducer)
 
   const onItemName = (e: any) => {
     dispatch(itemName(e.target.value))
@@ -24,6 +25,10 @@ const AddModal = () => {
   }
 
   const onGetData = () => {
+    if(!itemNameState || !transportNumberState || !deliveryIdState){
+      dispatch(openError('빈칸을 전부 입력해주세요!'))
+      return;
+    }
     delivery.getData(deliveryIdState, transportNumberState)
     .then((res) => {
       const resData = {
@@ -32,19 +37,19 @@ const AddModal = () => {
         id: transportNumberState,
       }
       dispatch(addCard(resData))
+      dispatch(resetModal())
     })
     .catch((res) => {
       console.log(res)
     })
-    dispatch(resetModal())
   }
 
   return (
     <>
-      <ModalBaseContainer>
+      <ModalBaseContainer visibility={visibility} height={height} opacity={opacity} type='add'>
         <S.Container>
           <S.Row>
-            <S.Field>물건 이름</S.Field>
+            <S.Text>물건 이름</S.Text>
             <S.Input
               name="name"
               value={itemNameState}
@@ -53,19 +58,18 @@ const AddModal = () => {
             />
           </S.Row>
           <S.Row>
-            <S.Field>운송장 번호</S.Field>
+            <S.Text>운송장 번호</S.Text>
             <S.Input
               name="trackID"
-              value={transportNumberState}
               onChange={onTransportNumber}
               placeholder="숫자로 작성해 주세요"
               type="number"
             />
           </S.Row>
           <S.Row>
-            <S.Field>택배사 이름</S.Field>
-            <S.Select onChange={onDeliveryId}>
-              <option selected>택배사</option>
+            <S.Text>택배사 이름</S.Text>
+            <S.Select onChange={onDeliveryId} >
+              <option selected value="default">택배사</option>
               {
                 Carriers.map((i, index) => {
                   return (
