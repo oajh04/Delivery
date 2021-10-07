@@ -2,7 +2,7 @@ import React, { ReactEventHandler, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import delivery from '../../../libs/api/delivery';
 import { Carriers } from '../../../libs/Data/Carriers';
-import { resetModal, deliveryId, itemName, transportNumber } from '../../../redux/actions/addModalAction';
+import { resetModal, deliveryId, itemName, transportNumber, closeModal } from '../../../redux/actions/addModalAction';
 import { addCard } from '../../../redux/actions/cardAction';
 import { openError } from '../../../redux/actions/errorModalAction';
 import { RootState } from '../../../redux/reducers';
@@ -38,9 +38,11 @@ const AddModal = () => {
       }
       dispatch(addCard(resData))
       dispatch(resetModal())
+      dispatch(closeModal())
     })
-    .catch((res) => {
-      console.log(res)
+    .catch((err) => {
+      const message = err.response.data.message
+      dispatch(openError(message))
     })
   }
 
@@ -69,7 +71,7 @@ const AddModal = () => {
           <S.Row>
             <S.Text>택배사 이름</S.Text>
             <S.Select onChange={onDeliveryId} >
-              <option selected value="default">택배사</option>
+              <option value="DEFAULT" disabled>택배사</option>
               {
                 Carriers.map((i, index) => {
                   return (
