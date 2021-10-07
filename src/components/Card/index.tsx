@@ -5,6 +5,8 @@ import { BsArrowRight } from 'react-icons/bs'
 import { AtPickup, Delivered, InTransit, OutForDelivery, ReadyDelivery } from '../../assets';
 import { ContainerWrapper } from '../Container';
 import { useDate } from '../../libs/hooks/useDate';
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { DelCard } from '..';
 
 interface Props {
     data: any,
@@ -13,6 +15,7 @@ interface Props {
 }
 
 const Card: FC<Props> = ({data, name, id}) => {
+    
 
     return (
     <ContainerWrapper>
@@ -23,7 +26,10 @@ const Card: FC<Props> = ({data, name, id}) => {
             </S.Title>
 
             <S.Info>
-                <div>{id}</div>
+                <CopyToClipboard text={id}
+                onCopy={() => alert('Copy')}>
+                    <div className="deliveryId">{id}</div>
+                </CopyToClipboard>
                 <div>{name}</div>
             </S.Info>
 
