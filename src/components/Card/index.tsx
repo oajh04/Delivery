@@ -9,18 +9,22 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { DelCard } from '..';
 import { useDispatch } from 'react-redux';
 import { openMotion } from '../../redux/actions/motionAction';
+import { useDeliveryId } from '../../libs/hooks/useDeliveryId';
+import Progress from './Progress';
 
 interface Props {
     data: any,
     name: string,
-    id: number
+    id: number,
+    index: number,
 }
 
-const Card: FC<Props> = ({data, name, id}) => {
+const Card: FC<Props> = ({data, name, id, index}) => {
     const dispatch = useDispatch()
+    const toggleId = useDeliveryId(id, index)
 
     const onToggle = () => {
-        dispatch(openMotion())
+        dispatch(openMotion(toggleId))
     }
 
     return (
@@ -49,28 +53,7 @@ const Card: FC<Props> = ({data, name, id}) => {
                 </div>
             </S.Date>
 
-            <S.Progresses>
-                <div>
-                    <img src={ReadyDelivery.src} alt="상품인수"/>
-                    <span>상품준비중</span>
-                </div>
-                <div>
-                    <img src={AtPickup.src} alt="상품인수"/>
-                    <span>상품인수</span>
-                </div>
-                <div>
-                    <img src={InTransit.src} alt="상품이동중"/>
-                    <span>상품이동중</span>
-                </div>
-                <div>
-                    <img src={OutForDelivery.src} alt="배송출발"/>
-                    <span>배송출발</span>
-                </div>
-                <div>
-                    <img src={Delivered.src} alt="배달완료"/>
-                    <span>배달완료</span>
-                </div>
-            </S.Progresses>
+            <Progress progresses={data.progresses} stateId={data.state.id} />
         </S.Wrapper>
     </ContainerWrapper>
   );
