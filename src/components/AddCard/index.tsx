@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { openModal } from '../../redux/actions/addModalAction';
 import { RootState } from '../../redux/reducers';
 import { ContainerWrapper } from '../Container';
+import { motion } from 'framer-motion'
 
 const AddCard = () => {
   const dispatch = useDispatch();
@@ -16,9 +17,15 @@ const AddCard = () => {
   return (
     <>
       <ContainerWrapper>
-        <S.Wrapper onClick={onOpenModal}>
-          <BiPlusMedical />
-        </S.Wrapper>
+        <motion.div
+          whileHover={{ scale: 1.2 }}
+          onClick={onOpenModal}
+          whileTap={{ scale: 0.95 }}
+        >
+          <S.Wrapper>
+            <BiPlusMedical />
+          </S.Wrapper>
+        </motion.div>
       </ContainerWrapper>  
     </>
   );
