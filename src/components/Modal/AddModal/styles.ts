@@ -5,10 +5,10 @@ interface Props {
 }
   
 export const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    height: 300px;
-    font-family: 'CookieRunRegular';
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  font-family: 'CookieRunRegular';
 `;
 
 export const Row = styled.div`
@@ -19,7 +19,7 @@ export const Row = styled.div`
   white-space:normal;
 `;
 
-export const Field = styled.span`
+export const Text = styled.span`
   font-family: 'CookieRunBold';
   margin-right: 1.2rem;
   white-space:normal;
