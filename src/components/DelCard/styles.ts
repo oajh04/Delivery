@@ -18,6 +18,7 @@ export const Button = styled.div`
     display: flex;
     flex-direction: column;
     text-align: center;
+    cursor: pointer;
     svg {
         margin-bottom: 5px;
         width: 50px;
