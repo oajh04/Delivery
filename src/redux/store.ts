@@ -1,27 +1,28 @@
-import { createWrapper } from 'next-redux-wrapper';
-import { createStore } from 'redux';
-import { persistReducer, persistStore } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import { createStore } from "redux";
+import { createWrapper, HYDRATE } from "next-redux-wrapper";
+import rootReducer from "./reducers";
+import { FC } from "react";
 
-import rootReducer from './reducers';
+const makeStore = () => {
+    const { persistStore, persistReducer } = require("redux-persist");
+    const storage = require("redux-persist/lib/storage").default;
 
-const persistConfig = {
-  storage,
-  key: 'root',
+    const persistConfig = {
+      key: "nextjs",
+      whitelist: ["cardReducer"], // only counter will be persisted, add other reducers if needed
+      storage, // if needed, use a safer storage
+    };
+
+    const persistedReducer = persistReducer(persistConfig, rootReducer); // Create a new reducer with our existing reducer
+
+    const store = createStore(
+      persistedReducer
+    ); // Creating the store again
+
+    store.__persistor = persistStore(store); // This creates a persistor object & push that persisted object to .__persistor, so that we can avail the persistability feature
+
+    return store;
 };
 
-const enhancedReducer = persistReducer(persistConfig, rootReducer);
-const store = createStore(rootReducer);
-export const persistor = persistStore(store);
-
-export function configureStore() {
-  // const store = createStore(enhancedReducer);
-  return store;
-  // return store;
-}
-
-const wrapper = createWrapper(configureStore, {
-  debug: process.env.NODE_ENV === 'development',
-});
-
-export default wrapper;
+// Export the wrapper & wrap the pages/_app.js with this wrapper only
+export const wrapper = createWrapper(makeStore);
