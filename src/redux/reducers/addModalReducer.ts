@@ -47,9 +47,6 @@ export default function addModalReducer(state: state = initalState, action: addM
     case RESET_MODAL: {
       return {
         ...state,
-        visibility: 'hidden',
-        height: '0px',
-        opacity: 0,
         itemNameState: '',
         transportNumberState: '',
       };
