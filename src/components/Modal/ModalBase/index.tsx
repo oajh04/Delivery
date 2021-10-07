@@ -1,24 +1,30 @@
 import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeModal, openModal } from '../../../redux/actions/addModalAction';
+import { closeModal } from '../../../redux/actions/addModalAction';
+import { closeError } from '../../../redux/actions/errorModalAction';
 import { RootState } from '../../../redux/reducers';
 import * as S from './styles'
 
 interface Props {
-    children: React.ReactNode
+    children: React.ReactNode,
+    visibility: string,
+    opacity?: number,
+    height?: string,
+    type: string
 }
 
-const ModalBaseContainer: FC<Props> = ({children}) => {
+const ModalBaseContainer: FC<Props> = ({children, visibility, opacity, height, type}) => {
     const dispatch = useDispatch();
-    const {visibility, height, opacity} = useSelector((state: RootState) => state.addModalReducer)
 
     const onCloseModal = () => {
-        dispatch(closeModal());
+        if(type === 'add'){
+            dispatch(closeModal());
+        }
     }
 
     return (
         <>
-            <S.ModalBaseWrapper visibility={visibility} opacity={opacity}>
+            <S.ModalBaseWrapper visibility={visibility} opacity={opacity} type={type}>
                 <S.ModalBackgroud onClick={onCloseModal} />
                 <S.ModalContent height={height} opacity={opacity}>{children}</S.ModalContent>
             </S.ModalBaseWrapper>
