@@ -7,6 +7,8 @@ import { ContainerWrapper } from '../Container';
 import { useDate } from '../../libs/hooks/useDate';
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { DelCard } from '..';
+import { useDispatch } from 'react-redux';
+import { openMotion } from '../../redux/actions/motionAction';
 
 interface Props {
     data: any,
@@ -15,11 +17,15 @@ interface Props {
 }
 
 const Card: FC<Props> = ({data, name, id}) => {
-    
+    const dispatch = useDispatch()
+
+    const onToggle = () => {
+        dispatch(openMotion())
+    }
 
     return (
     <ContainerWrapper>
-        <S.Wrapper>
+        <S.Wrapper onClick={onToggle}>
             <S.Title>
                 <span>{data.carrier.name}</span>
                 <div>{data.state.text}</div>
