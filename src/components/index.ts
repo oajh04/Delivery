@@ -3,3 +3,4 @@ export { default as Footer } from './Footer'
 export { default as AddCard } from './AddCard'
 export { default as DelCard } from './DelCard'
 export { default as AddModal } from './Modal/AddModal';
+export { default as ErrorModal } from './Modal/ErrorModal'
