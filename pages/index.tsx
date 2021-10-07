@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import type { NextPage } from 'next'
-import { AddCard, AddModal, Footer, Main } from '../src/components'
+import { AddCard, AddModal, ErrorModal, Footer, Main } from '../src/components'
 
 export const Wrapper = styled.div`
     width: 100%;
@@ -16,6 +16,7 @@ const Home: NextPage = () => {
   return (
     <>
       <AddModal />
+      <ErrorModal />
       <Wrapper>
         <Main/>
         <AddCard />
