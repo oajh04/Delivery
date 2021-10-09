@@ -28,7 +28,8 @@ export const ModalBaseWrapper = styled.div<Props>`
     `
     : css`
       transition: all 0s;
-    `};
+    `
+  };
 `;
 
 export const ModalBackgroud = styled.div`
@@ -59,5 +60,6 @@ export const ModalContent = styled.div<Props>`
     `
     : css`
       transition: all 0s;
-    `};
+    `
+  };
 `
